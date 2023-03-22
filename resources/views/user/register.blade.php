@@ -38,7 +38,7 @@
             <select class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-400 px-4" name="gender" >
                 <option value="" {{ old('gender') == "" ? 'selected' : '' }}></option>
                 <option value="Male" {{ old('gender') == "Male" ? 'selected' : '' }}>Male</option>
-                <option value="FeMale" {{ old('gender') == "Female" ? 'selected' : '' }}>Female</option>
+                <option value="Female" {{ old('gender') == "Female" ? 'selected' : '' }}>Female</option>
             </select>
             @error('gender')
             <p class="text-red-500 text-xs p-1">{{ $message }}</p>

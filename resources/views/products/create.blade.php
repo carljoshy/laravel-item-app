@@ -34,6 +34,13 @@
             @enderror
         </div>
         <div class="mb-6 pt-3 rounded bg-gray-200">
+            <label for="stocks" class="block text-gray-700 text-sm font-bold mb-2 ml-3">Stocks</label>
+            <input type="number" class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-400 px-4" name="stocks" min="0" value={{ old('stocks') }}>
+            @error('stocks')
+            <p class="text-red-500 text-xs p-1">{{ $message }}</p>
+            @enderror
+        </div>
+        <div class="mb-6 pt-3 rounded bg-gray-200">
             <label for="price" class="block text-gray-700 text-sm font-bold mb-2 ml-3">Price</label>
             <input type="number" class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-400 px-4" name="price" min="0" value={{ old('price') }}>
             @error('price')
