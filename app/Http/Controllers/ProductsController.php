@@ -10,15 +10,25 @@ use Illuminate\Support\Facades\DB;
 class ProductsController extends Controller
 {
 
+    // ['products' => $data]
+
 
     public function index(){
 
-        // $categories= Categories::all();
-        // $products = Products::all();
+        $categories= Categories::all();
+        $products = Products::orderByDesc('created_at')->take(10)->get();
 
-        $data = array("products" => DB::table('products')->orderByDesc('created_at')->simplePaginate(10));
+        // $products = array("products" => DB::table('products')->orderByDesc('created_at'));
+        // $categories = array("categories" => DB::table('categories')->orderByDesc('created_at'));
 
-        return view('products.index', $data);
+        return view('products.index')
+            ->with('products', $products)
+            ->with('categories', $categories);
+
+            // return view('products.index')->with(array('products' =>$products, 'categories' => $categories));
+
+
+
     }
     public function create(){
         return view('products.create')->with('title', 'Add New Product');

@@ -17,7 +17,7 @@
 <section class="mt-10 pt-5">
     <div class="overflow-x-auto relative">
 
-        <table class="w-full mx-auto text-sm text-left text-gray-500">
+        <table class="w-full mx-auto text-sm text-left text-gray-500" >
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
                     <th scope="col" class ="py-3 px-6">First Name </th>
@@ -39,16 +39,15 @@
 
 
                     <td class="py-4 px-6">
-                       {{-- <a href="/product/{{$product->id}}" class="bg-sky-600 text-white px-4 py-1 rounded">View</a> --}}
 
                           <!-- Modal toggle -->
+                          <button data-modal-target="updaterole-modal{{$user->id}}" data-modal-toggle="updaterole-modal{{$user->id}}" class="bg-sky-700 text-white px-4 py-1 rounded" type="submit" >
+                            View Role
+                        </button>
+
                     <button data-modal-target="updateUser-modal{{$user->id}}" data-modal-toggle="updateUser-modal{{$user->id}}" class="bg-amber-500 text-white px-4 py-1 rounded" type="submit" >
                         Update
                     </button>
-
-                       {{-- <a href="/update/{{$product->id}}" class="bg-amber-500 text-white px-4 py-1 rounded">Update</a> --}}
-
-                       {{-- <a href="/delete/{{$product->id}}" class="bg-red-600 text-white px-4 py-1 rounded">Delete</a> --}}
 
                        <button data-modal-target="deleteUser-modal{{$user->id}}" data-modal-toggle="deleteUser-modal{{$user->id}}" class="bg-red-600 text-white px-4 py-1 rounded" type="submit" >
                         Delete
@@ -60,7 +59,8 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="pt-6 p-4 mx-auto max-w-lg"> {{ $users->links() }}</div>
+        {{-- <div class="pt-6 p-4 mx-auto max-w-lg"> {{ $users->links() }}</div> --}}
+        
     </div>
 </section>
 

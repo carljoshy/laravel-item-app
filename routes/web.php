@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Roles;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AccessController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoriesController;
 
@@ -58,4 +60,10 @@ Route::controller(CategoriesController::class)->group(function(){
 
 
 });
+
+Route::controller(AccessController::class)->group(function(){
+    Route::post('/assign/role','storedata');
+
+});
+
 

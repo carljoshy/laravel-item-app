@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Roles;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -14,13 +15,14 @@ class UserController extends Controller
 
     public function manage(){
 
-        // $data = Students::all();
+        $roles = Roles::all();
 
-        // return view('students.index', ['students' => $data]);
+        // $data = array("users" => DB::table('users')->orderByDesc('created_at')->simplePaginate(10));
+        // $users = User::all();
+        $users = User::all();
 
-        $data = array("users" => DB::table('users')->orderByDesc('created_at')->simplePaginate(10));
 
-        return view('user.manage', $data);
+        return view('user.manage')->with('users',$users)->with('roles',$roles);
 
     }
 

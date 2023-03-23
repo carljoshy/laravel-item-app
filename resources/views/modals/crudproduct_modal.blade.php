@@ -14,19 +14,16 @@
                 <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Add New Product</h3>
                 <form class="space-y-6" action="/add/product" method="POST">
                   @csrf
-                  {{-- <div>
-                    <label for="category1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category1</label>
-                    <select id="category1" name ="category1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                  <div>
+                    <label for="category_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                    <select id="category_name" name ="category_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         @foreach ($categories as $category)
-                        <option value="{{ $category->id }}" >{{ $category->categoryname }}</option>
+                        <option value="{{ $category->category_name }}" >{{ $category->category_name }}</option>
                         @endforeach
 
                     </select>
-                  </div> --}}
-                    <div>
-                        <label for="category_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                        <input type="text" name="category_name" id="category_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter Category Name" >
-                    </div>
+                  </div>
+                 
                     <div>
                       <label for="product_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
                       <input type="text" name="product_name" id="product_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter Product Name">
@@ -69,10 +66,17 @@
                 <form class="space-y-6" action="/product/{{$product->id}}" method="POST">
                     @method('put')
                   @csrf
+
+
                     <div>
                         <label for="category_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                        <input type="text" name="category_name" id="category_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter Category Name" value="{{ $product->category_name}}">
-                    </div>
+                        <select id="category_name" name ="category_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->category_name }}" {{ $category->id == $category->id ? 'selected' : '' }}>{{ $category->category_name }}</option>
+                            @endforeach
+
+                        </select>
+                      </div>
                     <div>
                       <label for="product_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
                       <input type="text" name="product_name" id="product_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter Product Name"  value="{{ $product->product_name}}">

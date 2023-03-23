@@ -1,4 +1,12 @@
 
+@php
+
+    // dump($products);
+    // dump($categories);
+@endphp
+
+
+
 @include('partials.header')
 <x-nav  />
 
@@ -60,7 +68,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="pt-6 p-4 mx-auto max-w-lg"> {{ $products->links() }}</div>
+        <div class="pt-6 p-4 mx-auto max-w-lg"> </div>
     </div>
 </section>
 
