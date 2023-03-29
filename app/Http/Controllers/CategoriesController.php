@@ -10,11 +10,11 @@ class CategoriesController extends Controller
 {
     public function category(){
 
-        // $data = Students::all();
+        // $data = Categories::all();
 
-        // return view('students.index', ['students' => $data]);
+        // return view('categoeies.manage_category', ['categories' => $data]);
 
-        $data = array("categories" => DB::table('categories')->orderByDesc('created_at')->simplePaginate(10));
+        $data = array("categories" => DB::table('categories')->orderByDesc('created_at')->paginate(10));
 
         return view('categories.manage_category ', $data);
 
@@ -44,5 +44,5 @@ class CategoriesController extends Controller
         $category->delete();
         return back()->with('message', 'Category was successfully deleted');
 
-    }                                                            
+    }
 }

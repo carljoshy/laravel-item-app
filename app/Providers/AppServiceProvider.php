@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Access;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // view()->composer('user.manage', function ($view) {
+        //     $view->with('roles', Access::all());
+        // });
     }
 }

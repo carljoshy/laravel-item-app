@@ -63,6 +63,7 @@ Route::controller(CategoriesController::class)->group(function(){
 
 Route::controller(AccessController::class)->group(function(){
     Route::post('/assign/role','storedata');
+    Route::delete('/role/{role}','destroy');
 
 });
 

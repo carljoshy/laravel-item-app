@@ -16,9 +16,9 @@ class ProductsController extends Controller
     public function index(){
 
         $categories= Categories::all();
-        $products = Products::orderByDesc('created_at')->take(10)->get();
+        // $products = Products::orderByDesc('created_at')->take(10)->get();
 
-        // $products = array("products" => DB::table('products')->orderByDesc('created_at'));
+        $products = DB::table('products')->orderByDesc('created_at')->paginate(10);
         // $categories = array("categories" => DB::table('categories')->orderByDesc('created_at'));
 
         return view('products.index')

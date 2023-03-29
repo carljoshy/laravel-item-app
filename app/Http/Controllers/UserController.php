@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Roles;
+use App\Models\Access;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -16,13 +17,18 @@ class UserController extends Controller
     public function manage(){
 
         $roles = Roles::all();
+        // $dummy = DB::table('accesses')->select()->get();
+        $access = DB::table('accesses')
+        ->join('roles', 'roles.id', "=", 'accesses.role_id')
+        ->join('users', 'users.id', "=", 'accesses.user_id')
+        ->select('users.first_name','users.last_name','roles.role_name','accesses.*')->get();
 
         // $data = array("users" => DB::table('users')->orderByDesc('created_at')->simplePaginate(10));
-        // $users = User::all();
+   
         $users = User::all();
 
 
-        return view('user.manage')->with('users',$users)->with('roles',$roles);
+        return view('user.manage')->with('users',$users)->with('roles',$roles)->with('access',$access);
 
     }
 

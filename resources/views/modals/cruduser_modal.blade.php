@@ -17,16 +17,16 @@
                     @csrf
                     <input type="hidden" name="user_id" value="{{$user->id}}">
                       <div>
-                          <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
+                          <label for="first_name" class="block mb-2 pt-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
                           <input type="text" name="first_name" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Entter first name" value="{{ $user->first_name }}">
                       </div>
                       <div>
-                          <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
+                          <label for="last_name" class="block mb-2 pt-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
                           <input type="last_name" name="last_name" id="last_name" placeholder="Enter last name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value ="{{ $user->last_name }}">
                       </div>
                       <div>
 
-                    <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
+                    <label for="gender" class="block mb-2 pt-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
                     <select id="gender" name ="gender" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option value="" {{  $user->gender  == "" ? 'selected' : '' }}></option>
                         <option value="Male" {{  $user->gender  == "Male" ? 'selected' : '' }}>Male</option>
@@ -37,12 +37,13 @@
                     </div>
 
                     <div>
-                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                        <label for="email" class="block mb-2 pt-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                         <input type="email" name="email" id="email" placeholder="name@email.com" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" value ="{{ $user->email }}">
                     </div>
 
+                    <div class="pt-5">
                       <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update User</button>
-
+                    </div>
                   </form>
               </div>
           </div>
@@ -90,7 +91,26 @@
             <div class="px-6 py-6 lg:px-8">
                 <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white text-center">View User Role</h3>
 
+
                 <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Role of {{ $user->first_name }} {{ $user->last_name }}</h3>
+                @foreach ( $access as $newaccess )
+
+                   @if ($newaccess->user_id == $user->id )
+
+                   <div class="flex flex-row gap-4">
+                    <div>{{ $newaccess->role_name }} — </div>
+
+                    <form action="/role/{{ $newaccess->id }}" method="POST">
+                        @method('delete')
+                        @csrf
+                    <div><button class ="mb-4 px-3 bg-red-500 text-white rounded">Remove</button></div>
+                    </form>
+                  </div>
+
+                    @endif
+
+
+                @endforeach
                 <form class="space-y-6" action="/assign/role" method="POST">
 
                     @csrf
@@ -99,7 +119,7 @@
                         <input type="hidden" name="user_id" id ="user_id" value =" {{$user->id}}">
 
                     <div>
-                        <label for="role_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Assign Role</label>
+                        <label for="role_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-3">Assign Role</label>
                         <select id="role_id" name ="role_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             @foreach ($roles as $role)
                             <option value=""></option>
@@ -109,8 +129,9 @@
                         </select>
                       </div>
 
+                      <div class="pt-5">
                     <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Assign</button>
-
+                </div>
                 </form>
             </div>
         </div>

@@ -56,7 +56,10 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="pt-6 p-4 mx-auto max-w-lg"> {{ $categories->links() }}</div>
+        {{-- <div class="pt-6 p-4 mx-auto max-w-lg"> {{ $categories->links() }}</div> --}}
+        <div class="pt-6 p-4 mx-auto max-w-lg"></div>
+        {{ $categories->links('pagination::tailwind') }}
+
     </div>
 </section>
 

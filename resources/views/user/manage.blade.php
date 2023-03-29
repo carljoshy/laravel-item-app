@@ -12,6 +12,7 @@
 <button data-modal-target="addUser-modal" data-modal-toggle="addUser-modal" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 absolute right-5" type="button">
     Add New User
   </button> --}}
+
 </header>
 
 <section class="mt-10 pt-5">
@@ -59,8 +60,10 @@
                 @endforeach
             </tbody>
         </table>
-        {{-- <div class="pt-6 p-4 mx-auto max-w-lg"> {{ $users->links() }}</div> --}}
-        
+        {{-- <div class="pt-6 p-4 mx-auto max-w-lg"></div>
+        {{ $products->links('pagination::tailwind') }} --}}
+
+
     </div>
 </section>
 

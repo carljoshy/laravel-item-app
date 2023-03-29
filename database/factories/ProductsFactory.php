@@ -17,8 +17,8 @@ class ProductsFactory extends Factory
     public function definition(): array
     {
         return [
-            'category_name' => fake()->randomElement(['Drinks','Dessert','Chips','Biscuits','Meat','Milk']),
-            'product_name' => fake()->randomElement(['Coke','Chicken','Piattos','Presto','VitaMilk']),
+            'category_name' => fake()->unique()->randomElement(['Drinks','Dessert','Chips','Biscuits','Meat','Milk']),
+            'product_name' => fake()->unique()->randomElement(['Coke','Chicken','Piattos','Presto','Vitamilk']),
             'stocks' => fake()->numberBetween($min = 99, $max = 999),
             'price' => fake()->numberBetween($min = 99, $max = 9999),
         ];

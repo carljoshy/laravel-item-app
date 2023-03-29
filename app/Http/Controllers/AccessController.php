@@ -19,4 +19,10 @@ class AccessController extends Controller
         return back()->with('message', 'Assigned Role Successful');
 
     }
+    public function destroy(Access $role){
+        $role->delete();
+        return back()->with('message', 'User Role was successfully deleted');
+
+    }
+
 }

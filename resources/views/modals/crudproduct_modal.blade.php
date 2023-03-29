@@ -15,7 +15,7 @@
                 <form class="space-y-6" action="/add/product" method="POST">
                   @csrf
                   <div>
-                    <label for="category_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                    <label for="category_name" class="block mb-2 pt-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
                     <select id="category_name" name ="category_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         @foreach ($categories as $category)
                         <option value="{{ $category->category_name }}" >{{ $category->category_name }}</option>
@@ -23,22 +23,23 @@
 
                     </select>
                   </div>
-                 
+
                     <div>
-                      <label for="product_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
+                      <label for="product_name" class="block mb-2 pt-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
                       <input type="text" name="product_name" id="product_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter Product Name">
                   </div>
                   <div>
-                    <label for="stocks" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stocks</label>
+                    <label for="stocks" class="block mb-2 pt-2 text-sm font-medium text-gray-900 dark:text-white">Stocks</label>
                     <input type="number" name="stocks" id="stocks" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white " placeholder="Enter Product Stocks">
                 </div>
                   <div>
-                      <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                      <label for="price" class="block mb-2 pt-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
                       <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white " placeholder="Enter Product Price">
                   </div>
 
+                    <div class="pt-5">
                     <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add New Product</button>
-
+                </div>
                 </form>
             </div>
         </div>
@@ -69,29 +70,33 @@
 
 
                     <div>
-                        <label for="category_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                        <label for="category_name" class="block mb-2 pt-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
                         <select id="category_name" name ="category_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             @foreach ($categories as $category)
-                            <option value="{{ $category->category_name }}" {{ $category->id == $category->id ? 'selected' : '' }}>{{ $category->category_name }}</option>
+                            {{-- <option value="{{ $category->category_name }}" {{ $category->id == $category->id ? 'selected' : '' }}>{{ $category->category_name }}</option> --}}
+
+                            <option value= {{  $category->category_name  == $category->category_name ? 'selected' : '' }}>{{$category->category_name}}</option>
+
                             @endforeach
 
                         </select>
                       </div>
                     <div>
-                      <label for="product_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
+                      <label for="product_name" class="block mb-2 pt-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
                       <input type="text" name="product_name" id="product_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter Product Name"  value="{{ $product->product_name}}">
                   </div>
                   <div>
-                    <label for="stocks" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stocks</label>
+                    <label for="stocks" class="block mb-2 pt-2 text-sm font-medium text-gray-900 dark:text-white">Stocks</label>
                     <input type="number" name="stocks" id="stocks" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white " placeholder="Enter Product Stocks" value="{{ $product->stocks }}">
                 </div>
                   <div>
-                      <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                      <label for="price" class="block mb-2 pt-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
                       <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Enter Product Price"  value="{{ $product->price}}">
                   </div>
 
+                  <div class="pt-5">
                     <button type="submit" class="pt-2 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update Product</button>
-
+                </div>
                 </form>
             </div>
         </div>
