@@ -24,8 +24,10 @@ class UserController extends Controller
         ->select('users.first_name','users.last_name','roles.role_name','accesses.*')->get();
 
         // $data = array("users" => DB::table('users')->orderByDesc('created_at')->simplePaginate(10));
-   
-        $users = User::all();
+
+        // $users = User::all();
+
+        $users = DB::table('users')->orderByDesc('created_at')->paginate(10);
 
 
         return view('user.manage')->with('users',$users)->with('roles',$roles)->with('access',$access);

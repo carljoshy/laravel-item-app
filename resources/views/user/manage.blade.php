@@ -60,8 +60,8 @@
                 @endforeach
             </tbody>
         </table>
-        {{-- <div class="pt-6 p-4 mx-auto max-w-lg"></div>
-        {{ $products->links('pagination::tailwind') }} --}}
+        <div class="pt-6 p-4 mx-auto max-w-lg"></div>
+        {{ $users->links('pagination::tailwind') }}
 
 
     </div>
