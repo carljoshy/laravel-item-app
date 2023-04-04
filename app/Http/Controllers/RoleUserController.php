@@ -2,27 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Access;
+
+use App\Models\RoleUser;
 use Illuminate\Http\Request;
 
-class AccessController extends Controller
+class RoleUserController extends Controller
 {
-     public function storedata(Request $request){
+    public function storedata(Request $request){
 
         $validated = $request->validate([
             "role_id" => ['required'],
             "user_id" => ['required'],
 
         ]);
-        Access::create($validated);
+        RoleUser::create($validated);
 
         return back()->with('message', 'Assigned Role Successful');
 
     }
-    public function destroy(Access $role){
+    public function destroy(RoleUser $role){
         $role->delete();
         return back()->with('message', 'User Role was successfully deleted');
 
     }
-
 }

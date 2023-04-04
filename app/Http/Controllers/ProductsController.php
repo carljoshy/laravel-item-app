@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\DB;
 class ProductsController extends Controller
 {
 
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    //     $this->middleware('role:SuperAdmin');
+
+    // }
+
     // ['products' => $data]
 
 
@@ -27,8 +34,6 @@ class ProductsController extends Controller
 
             // return view('products.index')->with(array('products' =>$products, 'categories' => $categories));
 
-
-
     }
     public function create(){
         return view('products.create')->with('title', 'Add New Product');
@@ -43,7 +48,7 @@ class ProductsController extends Controller
 
         Products::create($validated);
 
-        return redirect('/')->with('message', 'New Product was added successfully!');
+        return back()->with('message', 'New Product was added successfully!');
     }
     public function update(Request $request, Products $product){
 
@@ -66,7 +71,7 @@ class ProductsController extends Controller
     }
     public function destroy(Products $product){
         $product->delete();
-        return redirect('/')->with('message', 'Product was successfully deleted');
+        return back()->with('message', 'Product was successfully deleted');
 
     }
 }

@@ -13,16 +13,28 @@ class isSuperAdmin
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next, ...$roles): Response
     {
-            if (auth()->user()->role_name) {
-                foreach (auth()->user()->role_name as $role) {
-                    if($role->name == 'SuperAdmin' || $role->name == 'Admin'){
-                        return $next($request);
+            // if (auth()->user()->role_name) {
+            //     foreach (auth()->user()->role_name as $role) {
+            //         if($role->name == 'SuperAdmin' || $role->name == 'Admin'){
+            //             return $next($request);
+            //         }
+            //     }
+            //     return redirect()->route('user.login')->with('message', 'Error');
+            // }
+
+                if ($request->user()->hasRoles($roles)) {
+                    foreach (auth()->user()->roles as $role) {
+                        if($role->name == 'SuperAdmin'){
+                            return $next($request);
+                        }
+                        else{
+                            return redirect()->route('user.login')->with('message', 'Error');
+                        }
                     }
+                    abort(401, 'This action is unauthorized.');
                 }
-                return redirect()->route('user.login')->with('message', 'Error');
-            }
 
     }
 }

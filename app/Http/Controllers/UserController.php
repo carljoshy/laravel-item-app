@@ -2,26 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
-use App\Models\Roles;
-use App\Models\Access;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 
+
 class UserController extends Controller
 {
 
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    //     $this->middleware('role:SuperAdmin');
+    //     $this->middleware('role:Admin');
+    // }
+
     public function manage(){
 
-        $roles = Roles::all();
+        $roles = Role::all();
         // $dummy = DB::table('accesses')->select()->get();
-        $access = DB::table('accesses')
-        ->join('roles', 'roles.id', "=", 'accesses.role_id')
-        ->join('users', 'users.id', "=", 'accesses.user_id')
-        ->select('users.first_name','users.last_name','roles.role_name','accesses.*')->get();
+        $access = DB::table('role_user')
+        ->join('roles', 'roles.id', "=", 'role_user.role_id')
+        ->join('users', 'users.id', "=", 'role_user.user_id')
+        ->select('users.first_name','users.last_name','roles.name','role_user.*')->get();
 
         // $data = array("users" => DB::table('users')->orderByDesc('created_at')->simplePaginate(10));
 
@@ -63,11 +70,13 @@ class UserController extends Controller
             "email" => ['required','email'],
             "password" => 'required'
         ]);
+        
         if(auth()->attempt($validated)){
             session()->regenerate();
 
             return redirect('/')->with('message', 'Welcom Back!');
         }
+
         return back()->withErrors(['email' => 'Login Failed'])->onlyInput('email');
     }
     public function store(Request $request){

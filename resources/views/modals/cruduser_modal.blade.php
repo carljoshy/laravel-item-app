@@ -98,7 +98,7 @@
                    @if ($newaccess->user_id == $user->id )
 
                    <div class="flex flex-row gap-4">
-                    <div>{{ $newaccess->role_name }} — </div>
+                    <div>{{ $newaccess->name }} — </div>
 
                     <form action="/role/{{ $newaccess->id }}" method="POST">
                         @method('delete')
@@ -123,7 +123,7 @@
                         <select id="role_id" name ="role_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             @foreach ($roles as $role)
                             <option value=""></option>
-                            <option value="{{ $role->id }}" >{{ $role->role_name }}</option>
+                            <option value="{{ $role->id }}" >{{ $role->name }}</option>
                             @endforeach
 
                         </select>

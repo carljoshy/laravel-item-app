@@ -23,6 +23,19 @@ class RedirectIfAuthenticated
             if (Auth::guard($guard)->check()) {
                 return redirect(RouteServiceProvider::HOME);
             }
+
+            // if(Auth::guard($guard)->check() && Auth::user()->role == 'SuperAdmin'){
+            //     return redirect()->route('prodcuts.index');
+            // }
+            // else if(Auth::guard($guard)->check() && Auth::user()->role == 'Admin'){
+            //     return redirect()->route('products.index');
+            // }
+            // else if(Auth::guard($guard)->check() && Auth::user()->role == 'Editor'){
+            //     return redirect()->route('products.index');
+            // }
+            // else{
+            //     return redirect()->route('viewer.home');
+            // }
         }
 
         return $next($request);

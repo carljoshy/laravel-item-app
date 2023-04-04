@@ -1,6 +1,7 @@
 <ul class="flex flex-col md:flex-row px-8">
 
     @auth
+    
     <li>
         <button type="button" data-modal-target="add-modal" data-modal-toggle="add-modal" class="block py-2 pr-4 pl-3">Add New Product</button>
         <button type="button" data-modal-target="add-modal" data-modal-toggle="add-modal" class="block py-2 pr-4 pl-3">Add New Product</button>

@@ -69,7 +69,7 @@ class Kernel extends HttpKernel
         'isViewer' => \App\Http\Middleware\isViewer::class,
         'isWriter' => \App\Http\Middleware\isWriter::class,
 
-       
+        'role' => \App\Http\Middleware\CheckRole::class,
 
     ];
 
