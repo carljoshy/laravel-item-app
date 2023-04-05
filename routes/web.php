@@ -37,6 +37,7 @@ Auth::routes();
 // Route::post('/logout','logout');
 
 Route::get('/register', [UserController::class, 'register']);
+Route::post('/store',[UserController::class, 'store']);
 Route::get('/login', [UserController::class, 'login']);
 Route::post('/login/process', [UserController::class, 'process']);
 Route::post('/logout', [UserController::class, 'logout']);
@@ -46,13 +47,12 @@ Route::group(['middleware' => ['isSuperAdmin']], function () {
 
             Route::get('/manage', 'manage');
             Route::post('/add/user','fetchUser');
-            Route::post('/store','store');
             Route::put('/user/{user}','update');
             Route::delete('/user/{user}','destroy');
 
         });
 
-        Route::controller(RoleUserController::class)->group(function(){
+    Route::controller(RoleUserController::class)->group(function(){
             Route::post('/assign/role','storedata');
             Route::delete('/role/{role}','destroy');
 
@@ -61,7 +61,7 @@ Route::group(['middleware' => ['isSuperAdmin']], function () {
 });
 
 Route::group(['middleware' => ['isAdmin']], function () {
-            Route::controller(ProductsController::class)->group(function(){
+    Route::controller(ProductsController::class)->group(function(){
             Route::get('/','index');
             // Route::get('/add/product','create');
             Route::post('/add/product','storedata');
@@ -73,11 +73,11 @@ Route::group(['middleware' => ['isAdmin']], function () {
 
 Route::group(['middleware' => ['isAdmin']], function () {
 
-Route::controller(CategoriesController::class)->group(function(){
-    Route::get('/category', 'category');
-    Route::post('/add/category','storedata');
-    Route::put('/category/{category}','updateCategory');
-    Route::delete('/category/{category}','destroy');
+    Route::controller(CategoriesController::class)->group(function(){
+            Route::get('/category', 'category');
+            Route::post('/add/category','storedata');
+            Route::put('/category/{category}','updateCategory');
+            Route::delete('/category/{category}','destroy');
 
 });
 

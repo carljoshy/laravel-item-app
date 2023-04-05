@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
+use App\Models\RoleUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -70,7 +71,7 @@ class UserController extends Controller
             "email" => ['required','email'],
             "password" => 'required'
         ]);
-        
+
         if(auth()->attempt($validated)){
             session()->regenerate();
 
@@ -91,6 +92,8 @@ class UserController extends Controller
         $validated['password'] = Hash::make( $validated['password']);
 
         $user = User::create($validated);
+
+        $user->roles()->attach(4);
 
         auth()->login($user);
 

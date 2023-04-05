@@ -20,9 +20,6 @@ class isViewer
                 if($role->name == 'Viewer'){
                     return $next($request);
                 }
-                else{
-                    return redirect()->route('user.login')->with('message', 'Error');
-                }
             }
             return redirect()->route('user.login')->with('message', 'Error');
         }

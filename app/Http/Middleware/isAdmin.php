@@ -21,13 +21,8 @@ class isAdmin
                 if($role->name == 'SuperAdmin' || $role->name == 'Admin' || $role->name == 'Editor' ){
                     return $next($request);
                 }
-                else{
-                    return redirect()->route('user.login')->with('message', 'Error');
-                }
 
 
-
-                
             }
 
             abort(401, 'This action is unauthorized.');

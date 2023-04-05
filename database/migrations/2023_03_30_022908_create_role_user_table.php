@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('role_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->biginteger('role_id')->unsigned();
+            $table->biginteger('role_id')->unsigned()->default('4');
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });

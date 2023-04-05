@@ -29,9 +29,6 @@ class isSuperAdmin
                         if($role->name == 'SuperAdmin'){
                             return $next($request);
                         }
-                        else{
-                            return redirect()->route('user.login')->with('message', 'Error');
-                        }
                     }
                     abort(401, 'This action is unauthorized.');
                 }
